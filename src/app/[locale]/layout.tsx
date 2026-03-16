@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -16,10 +16,48 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "claudiary",
-  description: "Dev logs crafted by your Claude Code",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "common" });
+  const tLanding = await getTranslations({ locale, namespace: "landing" });
+
+  return {
+    title: {
+      default: `${t("appName")} — ${t("tagline")}`,
+      template: `%s | ${t("appName")}`,
+    },
+    description: tLanding("heroDescription"),
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    ),
+    openGraph: {
+      title: `${t("appName")} — ${t("tagline")}`,
+      description: tLanding("heroDescription"),
+      siteName: t("appName"),
+      locale: locale === "ko" ? "ko_KR" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t("appName")} — ${t("tagline")}`,
+      description: tLanding("heroDescription"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      languages: {
+        ko: "/ko",
+        en: "/en",
+      },
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
