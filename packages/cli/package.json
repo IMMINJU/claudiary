@@ -1,0 +1,29 @@
+{
+  "name": "claudiary",
+  "version": "0.1.0",
+  "description": "Turn your Claude Code conversations into blog posts",
+  "type": "module",
+  "bin": {
+    "claudiary": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "dev": "tsup src/index.ts --format esm --watch"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "keywords": [
+    "claude-code",
+    "blog",
+    "cli",
+    "dev-log"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
