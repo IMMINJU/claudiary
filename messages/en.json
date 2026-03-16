@@ -1,0 +1,34 @@
+{
+  "common": {
+    "appName": "claudiary",
+    "tagline": "Dev logs crafted by your Claude Code",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "publish": "Publish",
+    "draft": "Draft"
+  },
+  "landing": {
+    "hero": "Turn Claude Code conversations into blog posts",
+    "heroDescription": "Automatically extract insights from your dev conversations and transform them into blog posts. We never store the original conversations.",
+    "tryDemo": "Try Demo",
+    "getStarted": "Get Started"
+  },
+  "auth": {
+    "loginWithGithub": "Login with GitHub",
+    "loginDescription": "Get started easily with your GitHub account."
+  },
+  "dashboard": {
+    "myPosts": "My Posts",
+    "newPost": "New Post",
+    "apiKeys": "API Keys",
+    "blogSettings": "Blog Settings",
+    "noPosts": "No posts yet.",
+    "noPostsDescription": "Run the /blog command in Claude Code to create your first post."
+  }
+}
